@@ -12,6 +12,10 @@
 */
 
 Route::get('/', function () {
+<<<<<<< HEAD
+=======
+    //return view('welcome');
+>>>>>>> 642b1dcdbee331321fc4dedd1efa7ededc4b334d
     return view('start');
 });
 
@@ -19,6 +23,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+<<<<<<< HEAD
+=======
+Route::get('/schedule', 'ScheduleController@index')->name('schedule');
+
+>>>>>>> 642b1dcdbee331321fc4dedd1efa7ededc4b334d
 Route::get('events', 'EventController@index');
 
 Route::get('events2', 'EventController@index2');
