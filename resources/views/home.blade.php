@@ -15,6 +15,10 @@
                     @endif
 
                     You are logged in!
+                    <br><br>
+                        <a class="btn btn-primary btn-large" href="{{ route('events') }}">Events</a>
+                
+
                 </div>
             </div>
         </div>
