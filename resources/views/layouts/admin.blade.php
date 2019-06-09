@@ -50,19 +50,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                @guest
-
-                @else
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('home') }}">Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('events') }}">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                @endguest
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('home') }}">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('events') }}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto" style="margin-right: 0px; float: right;">
                 <!-- Authentication Links -->

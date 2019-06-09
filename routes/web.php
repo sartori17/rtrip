@@ -25,3 +25,15 @@ Route::get('/schedule', 'ScheduleController@index')->name('schedule');
 Route::get('/events', 'EventController@index')->name('events');
 
 Route::get('/events2', 'EventController@index2');
+
+
+// Agrupamento de Rotas
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return 'Meu app';
+    });
+
+    Route::get('events', 'EventController@admin');
+});

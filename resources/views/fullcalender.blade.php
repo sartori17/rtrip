@@ -1,13 +1,15 @@
-@extends('layouts.appnew')
+@extends('layouts.admin')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
-
+    <link href='fullcalendar/packages/core/main.css' rel='stylesheet' />
+    <link href='fullcalendar/packages/daygrid/main.css' rel='stylesheet' />
+    <link href='fullcalendar/packages/interaction/main.css' rel='stylesheet' />
+    <link href='fullcalendar/packages/list/main.css' rel='stylesheet' />
+    <link href='fullcalendar/packages/timegrid/main.css' rel='stylesheet' />
 @endsection
 
 @section('content')
-    <div class="container">
+
         <div class="row" style="border: 1px solid lightgray; margin-top: -37px; padding-top: 40px; background-color: white;">
             <div class="col-md-6 ">
                 <div class="panel panel-default">
@@ -48,15 +50,14 @@
             </div>
 
         </div>
-    </div>
+
 @endsection
 
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js" ></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js" ></script>
-
+    <script src='fullcalendar/packages/core/main.js'></script>
+    <script src='fullcalendar/packages/daygrid/main.js'></script>
+    <script src='fullcalendar/packages/interaction/main.js'></script>
+    <script src='fullcalendar/packages/list/main.js'></script>
+    <script src='fullcalendar/packages/timegrid/main.js'></script>
     {!! $calendar->script() !!}
 @endsection

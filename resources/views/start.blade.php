@@ -15,9 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,800,900%7cRaleway:300,400,500,600,700" rel="stylesheet">
 
     <!-- custom styles (optional) -->
-    <link href="css/plugins.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/homepage/plugins.css" rel="stylesheet">
+    <link href="css/homepage/style.css" rel="stylesheet">
+    <link href="css/homepage/responsive.css" rel="stylesheet">
   </head>
   <body>
 
@@ -39,7 +39,8 @@
       <div class="container">
 
         <a class="navbar-brand" href="#">
-          <!--<img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">-->
+{{--          <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">--}}
+          {{ config('app.name', 'Laravel') }}
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +50,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}" data-scroll-nav="1">Login</a>
+              <a class="btn" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('login-form').submit();">{{ __('Login') }}</a>
+
+              <form id="login-form" action="{{ route('login') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
             </li>
           </ul>
         </div>
@@ -88,31 +93,31 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/Migrate.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/homepage/jquery-3.1.1.min.js"></script>
+    <script src="js/homepage/Migrate.js"></script>
+    <script src="js/homepage/popper.min.js"></script>
+    <script src="js/homepage/bootstrap.min.js"></script>
 
     <!-- owl carousel js -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/homepage/owl.carousel.min.js"></script>
 
     <!-- scrollIt js -->
-    <script src="js/scrollIt.min.js"></script>
+    <script src="js/homepage/scrollIt.min.js"></script>
 
     <!-- typed -->
-    <script src="js/typed.js"></script>
+    <script src="js/homepage/typed.js"></script>
 
     <!-- magnific-popup -->
-		<script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/homepage/jquery.fancybox.min.js"></script>
 
-		<!-- isotope.pkgd.min js -->
-		<script src="js/isotope.pkgd.min.js"></script>
+    <!-- isotope.pkgd.min js -->
+    <script src="js/homepage/isotope.pkgd.min.js"></script>
 
     <!-- validator js -->
-    <script src="js/validator.js"></script>
+    <script src="js/homepage/validator.js"></script>
 
     <!-- custom JavaScript -->
-    <script src="js/custom.js"></script>
+    <script src="js/homepage/custom.js"></script>
 
   </body>
 </html>
