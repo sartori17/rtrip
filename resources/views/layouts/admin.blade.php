@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta name="description" content="">
-    <meta name="author" content="Felipe Sartori">
+    <meta name="author" content="Felipe Sartori @sartori17">
     <meta name="generator" content="">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -55,6 +55,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('events') }}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('schedule') }}">Schedule</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

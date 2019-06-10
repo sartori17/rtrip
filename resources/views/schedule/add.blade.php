@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('style')
     <link href='fullcalendar/packages/core/main.css' rel='stylesheet' />
@@ -10,20 +10,23 @@
 
 @section('content')
     <div class="row" style="background-color: white;">
+        <div class="col-md-12 ">
+            <h3>Schedule</h3>
+            <hr>
+        </div>
         <div class="col-md-6 ">
             <div class="panel panel-default">
-                <div class="panel-heading">Calendar</div>
+                <div class="panel-heading"></div>
 
                 <div class="panel-body">
                     {!! $calendar->calendar() !!}
                 </div>
-
             </div>
         </div>
         <div class="col-md-4 col-md-offset-1">
-            <form action="/action_page.php">
+            <form action="/action_page.php" method="post">
                 <div class="form-group">
-                    <label for="email">Crianças (0 - 2 anos)</label>
+                    <label for="email">Crianças (0 - 3 anos)</label>
                     <input type="number" class="form-control" id="email">
                 </div>
                 <div class="form-group">

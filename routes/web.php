@@ -22,7 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/schedule', 'ScheduleController@index')->name('schedule');
 
-Route::get('/events', 'EventController@index')->name('events');
+Route::get('/events', 'EventController@new-event')->name('events');
+
+Route::get('/events3', 'EventController@index')->name('events3');
 
 Route::get('/events2', 'EventController@index2');
 
