@@ -33,35 +33,7 @@
 ================================================== -->
 
 
-    <!-- Navbar
-    ================================================== -->
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-
-        <a class="navbar-brand" href="#">
-{{--          <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">--}}
-          {{ config('app.name', 'Laravel') }}
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="fas fa-bars"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="btn" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('login-form').submit();">{{ __('Login') }}</a>
-
-              <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
-
-              </form>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- End Navbar
-================================================== -->
+    
 
 
     <!-- Header
@@ -73,7 +45,7 @@
           <div class="col-12 caption">
           	<h2><img src="img/logo.png" alt="logo" class="logo-1" style="width: 250px;"></h2><br>
             <h4>Serviço de transporte de passageiros, programa turístico, tours e receptivo</h4>
-            <h2 class="mt-20 mb-20">em <span></span></h2>
+            <h2 class="mt-20 mb-20">no Lisboa</h2>
             <p class="mt-20"></p>
 
 
@@ -93,31 +65,31 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/homepage/jquery-3.1.1.min.js"></script>
-    <script src="js/homepage/Migrate.js"></script>
-    <script src="js/homepage/popper.min.js"></script>
-    <script src="js/homepage/bootstrap.min.js"></script>
+    <script src="{{ url('js/homepage/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ url('js/homepage/Migrate.js') }}"></script>
+    <script src="{{ url('js/homepage/popper.min.js') }}"></script>
+    <script src="{{ url('js/homepage/bootstrap.min.js') }}"></script>
 
     <!-- owl carousel js -->
-    <script src="js/homepage/owl.carousel.min.js"></script>
+    <script src="{{ url('js/homepage/owl.carousel.min.js') }}"></script>
 
     <!-- scrollIt js -->
-    <script src="js/homepage/scrollIt.min.js"></script>
+    <script src="{{ url('js/homepage/scrollIt.min.js') }}"></script>
 
     <!-- typed -->
-    <script src="js/homepage/typed.js"></script>
+    <script src="{{ url('js/homepage/typed.js') }}"></script>
 
     <!-- magnific-popup -->
-    <script src="js/homepage/jquery.fancybox.min.js"></script>
+    <script src="{{ url('js/homepage/jquery.fancybox.min.js') }}"></script>
 
     <!-- isotope.pkgd.min js -->
-    <script src="js/homepage/isotope.pkgd.min.js"></script>
+    <script src="{{ url('js/homepage/isotope.pkgd.min.js') }}"></script>
 
     <!-- validator js -->
-    <script src="js/homepage/validator.js"></script>
+    <script src="{{ url('js/homepage/validator.js') }}"></script>
 
     <!-- custom JavaScript -->
-    <script src="js/homepage/custom.js"></script>
+    <script src="{{ url('js/homepage/custom.js') }}"></script>
 
   </body>
 </html>
