@@ -52,8 +52,8 @@
             <li class="nav-item">
               <a class="btn" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('login-form').submit();">{{ __('Login') }}</a>
 
-              <form id="login-form" action="{{ route('login') }}" method="POST" style="display: none;">
-                @csrf
+              <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
+
               </form>
             </li>
           </ul>

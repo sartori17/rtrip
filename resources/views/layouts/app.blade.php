@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{{ url('/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Bootstrap core CSS -->
     @yield('style')
@@ -37,7 +37,7 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="{{ url('css/sticky-footer-navbar.css') }}" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100" style="background-color: #add8e62e;">
 <header>
@@ -50,7 +50,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         @yield('navbar')
-
     </nav>
 </header>
 
@@ -64,12 +63,11 @@
 <footer class="footer mt-auto py-3">
     <div class="container">
         <p style="text-align: center; color: grey;">Telemóvel: +351 936 059 647 E-mail: roadtrip.porto@gmail.com</p>
-        <p style="text-align: center;color: grey;"></p>
     </div>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous" ></script>
-<script src="/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
+<script src="{{ url('/js/bootstrap.bundle.min.js') }}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 @yield('script')
 </html>
 

@@ -13,40 +13,42 @@
             <h3>Schedule</h3>
             <hr>
         </div>
-        'title','start_date','end_date','user','kids_under_two','kids_under_six','adults','bags','comments'
-        <div class="col-md-12 col-md-offset-1">
-            <form action="{{ url('schedule/add') }}" method="post">
-                @csrf
+        <div class="col-md-6 ">
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+
+                <div class="panel-body">
+                    {!! $calendar->calendar() !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <form action="/action_page.php" method="post">
                 <div class="form-group">
-                    <label for="start_date">Start date</label>
-                    <input type="text" class="form-control" id="start_date" name="start_date">
-                    <input type="text" class="form-control" id="end_date" name="end_date">
+                    <label for="email">Crianças (0 - 3 anos)</label>
+                    <input type="number" class="form-control" id="email" name="email">
                 </div>
                 <div class="form-group">
-                    <label for="kids_under_two">Crianças (0 - 2 anos)</label>
-                    <input type="number" class="form-control" id="kids_under_two" name="kids_under_two">
+                    <label for="pwd">Crianças (2 - 6 anos)</label>
+                    <input type="number" class="form-control" id="pwd">
                 </div>
                 <div class="form-group">
-                    <label for="kids_under_six">Crianças (3 - 6 anos)</label>
-                    <input type="number" class="form-control" id="kids_under_six" name="kids_under_six">
-                </div>
-                <div class="form-group">
-                    <label for="adults">Adultos</label>
-                    <input type="number" class="form-control" id="adults" name="adults">
+                    <label for="pwd">Adultos</label>
+                    <input type="number" class="form-control" id="pwd">
                 </div>
 
                 <div class="form-group">
-                    <label for="bags">Malas</label>
-                    <input type="number" class="form-control" id="bags" name="bags">
+                    <label for="pwd">Malas</label>
+                    <input type="number" class="form-control" id="pwd">
                 </div>
                 <div class="form-group">
-                    <label for="comments">Observação</label>
-                    <div><textarea rows="5" cols="40" class="textarea" id="comments" name="comments"></textarea></div>
+                    <label for="pwd">Observação</label>
+                    <div><textarea rows="5" cols="40" class="textarea" id="pwd"></textarea></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Reservar</button>
             </form>
-{{--            <button id="my-button" type="submit" class="btn btn-primary">Reservar</button>--}}
+            <button id="my-button" type="submit" class="btn btn-primary">Reservar</button>
         </div>
     </div>
 @endsection

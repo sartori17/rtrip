@@ -20,17 +20,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/schedule', 'ScheduleController@index')->name('schedule');
+//Route::get('/schedule', 'ScheduleController@index')->name('schedule');
 
-Route::get('/events', 'EventController@new-event')->name('events');
+//Route::get('/events', 'EventController@new-event')->name('events');
 
-Route::get('/events3', 'EventController@index')->name('events3');
+Route::get('/events', 'EventController@index')->name('events')->middleware('auth');;
 
 Route::get('/events2', 'EventController@index2');
 
 
 // Agrupamento de Rotas
-
+//Route::prefix('schedule')->group(function () {
+//    Route::get('/', 'ScheduleController@index')->name('schedule');
+//    Route::get('/add', 'ScheduleController@create')->name('schedule.add');
+//
+//
+//});
 
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
@@ -38,4 +43,16 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::get('events', 'EventController@admin');
+});
+
+//Route::resource('schedule', 'ScheduleController')->middleware('auth');
+
+Route::group(['prefix' => 'schedule', 'middleware' => 'auth'], function () {
+    Route::get('/', 'ScheduleController@index')->name('schedule');
+    Route::get('/add', 'ScheduleController@create')->name('schedule.add');
+    Route::post('/add', 'ScheduleController@store')->name('schedule.add');
+    Route::get('projetos/editar/{id}', 'ScheduleController@getEditar');
+    Route::post('projetos/editar/{id}', 'ScheduleController@postEditar');
+    Route::post('projetos/deletar/{id}', 'ScheduleController@postDeletar');
+
 });
