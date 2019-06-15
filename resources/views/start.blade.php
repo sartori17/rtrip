@@ -33,7 +33,35 @@
 ================================================== -->
 
 
-    
+    <!-- Navbar
+    ================================================== -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+
+        <a class="navbar-brand" href="#">
+                    <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">
+{{--          {{ config('app.name', 'Laravel') }}--}}
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="fas fa-bars"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="btn" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('login-form').submit();">{{ __('Login') }}</a>
+
+              <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
+
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar
+================================================== -->
 
 
     <!-- Header
@@ -45,7 +73,7 @@
           <div class="col-12 caption">
           	<h2><img src="img/logo.png" alt="logo" class="logo-1" style="width: 250px;"></h2><br>
             <h4>Serviço de transporte de passageiros, programa turístico, tours e receptivo</h4>
-            <h2 class="mt-20 mb-20">no Lisboa</h2>
+            <h2 class="mt-20 mb-20">no Porto</h2>
             <p class="mt-20"></p>
 
 

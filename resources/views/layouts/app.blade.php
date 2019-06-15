@@ -44,7 +44,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="/img/logo.png" style="width: 120px; margin-top: -12px; ">
+            <img src="/img/logo-black.png" style="width: 120px; margin-top: -12px; ">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
