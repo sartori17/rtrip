@@ -78,7 +78,19 @@ class ScheduleController extends Controller
         $calendar->setOptions($options);
         $calendar->setId('add');
 
-        return view('schedule.add', compact('calendar'));
+        $minDate = date('Y-m-d');
+
+        $maxDate = date('Y-m-d', strtotime("+30 day"));
+
+        for ($hour = 6; $hour <= 23; $hour++) {
+            $allowTimes[] = $hour.':00';
+            $allowTimes[] = $hour.':30';
+        }
+
+        $allowTimeString = "'".implode("','", $allowTimes)."'";
+
+
+        return view('schedule.add', compact('calendar', 'minDate', 'maxDate', 'allowTimeString'));
     }
 
     /**
