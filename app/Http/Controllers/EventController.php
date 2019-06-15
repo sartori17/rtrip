@@ -20,8 +20,8 @@ class EventController extends Controller
                 $events[] = Calendar::event(
                     $value->title,
                     false,
-                    new \DateTime($value->start_date . ' 08:00:00') ,
-                    new \DateTime($value->end_date. ' 08:30:00'.'') ,
+                    new \DateTime($value->start_date ) ,
+                    new \DateTime($value->end_date) ,
                     null,
                     // Add color and link on event
                     [
