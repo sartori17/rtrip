@@ -22,7 +22,6 @@ class ScheduleController extends Controller
             $data = Event::all();
         } else {
             $data = Event::where(['user'=> $user->id])->get();
-
         }
 
         $options = [
@@ -30,7 +29,7 @@ class ScheduleController extends Controller
             'defaultView' => 'list',
             'header' => [
                 'left' => 'title',
-                'center' => 'list,  timeGridWeek',
+                'center' => '',
                 'right' => 'prev,next',
             ],
             'businessHours' => [

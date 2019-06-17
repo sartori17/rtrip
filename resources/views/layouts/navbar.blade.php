@@ -5,33 +5,30 @@
 
         @else
             @role('admin')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }} </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('events') }}">{{ __('Eventos') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('schedule.index') }}">{{ __('Agenda') }}</a>
+                </li>
                 @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }} </a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }} </a>
                     </li>
                 @endif
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('events') }}">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('schedule.index') }}">Schedule</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
             @endrole
             @role('user')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Home </a>
+                    <a class="nav-link" href="{{ route('home') }}">{{ __('Registro') }} </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('events') }}">Events</a>
+                    <a class="nav-link" href="{{ route('events') }}">{{ __('Eventos') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('schedule.index') }}">Schedule</a>
+                    <a class="nav-link" href="{{ route('schedule.index') }}">{{ __('Agenda') }}</a>
                 </li>
             @endrole
         @endguest

@@ -18,12 +18,12 @@
                         <div class="alert alert-info">{{ Session::get('message') }}</div>
                     @endif
                     <div class="col-md-12 col-md-offset-1">
-                        LIST - Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+
                     </div>
 
                     <br>
                     <div class="col-md-12 col-md-offset-1 right">
-                        <a class="btn btn-dark" href="{{route('schedule.create')}}">new schedule</a>
+{{--                        <a class="btn btn-dark" href="{{route('schedule.create')}}">Novo agendamento</a>--}}
                     </div>
                     <br>
                     {!! $calendar->calendar() !!}

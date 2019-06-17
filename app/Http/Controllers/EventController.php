@@ -18,7 +18,7 @@ class EventController extends Controller
             'defaultView' => 'dayGridMonth',
             'header' => [
                 'left' => 'title',
-                'center' => 'dayGridMonth, dayGrid, list,  timeGridWeek',
+                'center' => 'dayGridMonth,  timeGridWeek',
                 'right' => 'prev,next',
             ],
 
