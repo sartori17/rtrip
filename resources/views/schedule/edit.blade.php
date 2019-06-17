@@ -22,10 +22,10 @@
                             <label for="start_date">Start date</label>
                             <input type="text" class="form-control timepicker" id="start_date" name="start_date" value="{{$data->start_date}}">
                         </div>
-                        <div class="form-group">
-                            <label for="end_date">End date</label>
-                            <input type="text" class="form-control timepicker" id="end_date" name="end_date" value="{{$data->end_date}}">
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label for="end_date">End date</label>--}}
+{{--                            <input type="text" class="form-control timepicker" id="end_date" name="end_date" value="{{$data->end_date}}">--}}
+{{--                        </div>--}}
                         <div class="form-group">
                             <label for="kids_under_two">Crianças (0 - 2 anos)</label>
                             <input type="number" class="form-control" id="kids_under_two" name="kids_under_two" value="{{$data->kids_under_two}}">

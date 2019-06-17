@@ -12,7 +12,6 @@
 */
 
 Route::get('/', function () {
-    //return view('welcome');
     return view('start');
 });
 
@@ -20,13 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/schedule', 'ScheduleController@index')->name('schedule');
-
-//Route::get('/events', 'EventController@new-event')->name('events');
-
 Route::get('/events', 'EventController@index')->name('events');//->middleware('auth')
-
-Route::get('/events2', 'EventController@index2');
 
 
 // Agrupamento de Rotas
@@ -36,14 +29,6 @@ Route::get('/events2', 'EventController@index2');
 //
 //
 //});
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return 'Meu app';
-    });
-
-    Route::get('events', 'EventController@admin');
-});
 
 Route::resource('schedule', 'ScheduleController')->middleware('auth');
 

@@ -5,15 +5,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Calendar;
+use Auth;
 use App\Event;
 
 class EventController extends Controller
 {
     public function index()
     {
+
+        $options = [
+            'plugins' => ['dayGrid', 'timeGrid', 'list', 'interaction'],
+            'defaultView' => 'dayGridMonth',
+            'header' => [
+                'left' => 'title',
+                'center' => 'dayGridMonth, dayGrid, list,  timeGridWeek',
+                'right' => 'prev,next',
+            ],
+
+            'navLinks' => 'true',
+            'selectable' => 'true',
+            'selectMirror' => 'true',
+            'editable' => 'true',
+            'eventLimit' => 'true'
+        ];
 //        $options = ['plugins' => 'interaction', 'dayGrid', 'timeGrid', 'list'];
         $events = [];
-        $data = Event::all();
+        $user = Auth::user();
+        if ($user->hasRole('admin')) {
+            $data = Event::all();
+        } else {
+            $data = Event::where(['user'=> $user->id])->get();
+
+        }
 
         if($data->count()) {
             foreach ($data as $key => $value) {
@@ -26,110 +49,15 @@ class EventController extends Controller
                     // Add color and link on event
                     [
                         'color' => '#f05050',
-                        'url' => 'pass here url and any route',
+                        'url' => route('schedule.show', ['id' => $value->id]),
                     ]
                 );
             }
         }
         $calendar = Calendar::addEvents($events);
-//        $calendar->setOptions($options);
-        return view('fullcalender', compact('calendar'));
-
-//        return view('schedule.start', compact('calendar'));
+        $calendar->setOptions($options);
+        $calendar->setId('add');
+        return view('events.list', compact('calendar'));
     }
 
-    public function schedule()
-    {
-//        $options = ['plugins' => 'interaction', 'dayGrid', 'timeGrid', 'list'];
-        $events = [];
-        $data = Event::all();
-
-        if($data->count()) {
-            foreach ($data as $key => $value) {
-                $events[] = Calendar::event(
-                    $value->title,
-                    false,
-                    new \DateTime($value->start_date . ' 08:00:00') ,
-                    new \DateTime($value->end_date. ' 08:30:00'.'') ,
-                    null,
-                    // Add color and link on event
-                    [
-                        'color' => '#f05050',
-                        'url' => 'pass here url and any route',
-                    ]
-                );
-            }
-        }
-        $calendar = Calendar::addEvents($events);
-//        $calendar->setOptions($options);
-        return view('schedule.new', compact('calendar'));
-
-//        return view('schedule.start', compact('calendar'));
-    }
-
-
-    public function index2()
-    {
-        $events = [];
-        $data = Event::all();
-
-        if($data->count()) {
-            foreach ($data as $key => $value) {
-                $events[] = Calendar::event(
-                    $value->title,
-                    true,
-                    new \DateTime($value->start_date),
-                    new \DateTime($value->end_date.' +1 day'),
-                    null,
-                    // Add color and link on event
-                    [
-                        'color' => '#f05050',
-                        'url' => 'pass here url and any route',
-                    ]
-                );
-            }
-        }
-        $calendar = Calendar::addEvents($events);
-        return view('fullcalendar', compact('calendar'));
-
-    }
-
-    public function admin()
-    {
-        $events = [];
-        $data = Event::all();
-
-        if($data->count()) {
-            foreach ($data as $key => $value) {
-                $events[] = Calendar::event(
-                    $value->title,
-                    true,
-                    new \DateTime($value->start_date),
-                    new \DateTime($value->end_date.' +1 day'),
-                    null,
-                    // Add color and link on event
-                    [
-                        'color' => '#f05050',
-                        'url' => 'pass here url and any route',
-                    ]
-                );
-            }
-        }
-        $calendar = Calendar::addEvents($events);
-        return view('fullcalendar', compact('calendar'));
-
-    }
 }
-
-/*
- * $calendar = Calendar::addEvents($e)->setCallbacks([
-      'themeSystem' => '"bootstrap4"',
-      'eventRender' => 'function(event, element) {
-        element.popover({
-          animation: true,
-          html: true,
-          content: $(element).html(),
-          trigger: "hover"
-          });
-        }'
-      ]);*/

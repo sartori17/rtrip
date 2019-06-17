@@ -7,6 +7,7 @@ use Calendar;
 use Auth;
 use App\Event;
 
+
 class ScheduleController extends Controller
 {
     /**
@@ -16,6 +17,14 @@ class ScheduleController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        if ($user->hasRole('admin')) {
+            $data = Event::all();
+        } else {
+            $data = Event::where(['user'=> $user->id])->get();
+
+        }
+
         $options = [
             'plugins' => ['dayGrid', 'timeGrid', 'list', 'interaction'],
             'defaultView' => 'list',
@@ -38,7 +47,7 @@ class ScheduleController extends Controller
         ];
 
         $events = [];
-        $data = Event::all();
+
 
         if($data->count()) {
             foreach ($data as $key => $value) {
@@ -121,18 +130,17 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'start_date'=>'required',
-            'end_date'=> 'required',
             'kids_under_two'=> 'required|integer',
             'kids_under_six'=> 'required|integer',
             'adults'=> 'required|integer',
             'bags'=> 'required|integer',
             'comments' => 'required'
         ]);
-        
+
         $event = new Event;
         $event->title = Auth::user()->name;
         $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
+        $event->end_date = $request->start_date;
         $event->user = Auth::user()->id;
         $event->kids_under_two = $request->kids_under_two;
         $event->kids_under_six = $request->kids_under_six;
@@ -151,8 +159,19 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
+
+        $user = Auth::user();
+        if ($user->hasRole('admin')) {
+            $data = Event::where('id', $id)->first();
+        } else {
+            $data = Event::where(['id'=> $id, 'user' => $user->id])->first();
+
+            if (!($data instanceof Event)) {
+                return redirect()->route('schedule.index')->with('message', 'Event not found!');
+            }
+        }
+
         $events = [];
-        $data = Event::where('id', $id)->first();
 
         $minDate = date('Y-m-d');
 
@@ -206,7 +225,6 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'start_date'=>'required',
-            'end_date'=> 'required',
             'kids_under_two'=> 'required|integer',
             'kids_under_six'=> 'required|integer',
             'adults'=> 'required|integer',
@@ -215,10 +233,9 @@ class ScheduleController extends Controller
         ]);
 
         $event = Event::where('id', $id)->first();
-        $event->title = Auth::user()->name;
+
         $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
-        $event->user = Auth::user()->id;
+        $event->end_date = $request->start_date;
         $event->kids_under_two = $request->kids_under_two;
         $event->kids_under_six = $request->kids_under_six;
         $event->adults = $request->adults;
