@@ -18,10 +18,10 @@ class ScheduleController extends Controller
     {
         $options = [
             'plugins' => ['dayGrid', 'timeGrid', 'list', 'interaction'],
-            'defaultView' => 'timeGridDay',
+            'defaultView' => 'list',
             'header' => [
                 'left' => 'title',
-                'center' => 'timeGridDay',
+                'center' => 'list,  timeGridWeek',
                 'right' => 'prev,next',
             ],
             'businessHours' => [
@@ -38,6 +38,24 @@ class ScheduleController extends Controller
         ];
 
         $events = [];
+        $data = Event::all();
+
+        if($data->count()) {
+            foreach ($data as $key => $value) {
+                $events[] = Calendar::event(
+                    $value->title,
+                    false,
+                    new \DateTime($value->start_date ) ,
+                    new \DateTime($value->end_date) ,
+                    null,
+                    // Add color and link on event
+                    [
+                        'color' => '#f05050',
+                        'url' => route('schedule.show', ['id' => $value->id]),
+                    ]
+                );
+            }
+        }
         $calendar = Calendar::addEvents($events);
         $calendar->setOptions($options);
         $calendar->setId('add');
@@ -52,7 +70,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        $options = [
+        /*$options = [
             'plugins' => ['dayGrid', 'timeGrid', 'list', 'interaction'],
             'defaultView' => 'timeGridDay',
             'header' => [
@@ -76,7 +94,7 @@ class ScheduleController extends Controller
         $events = [];
         $calendar = Calendar::addEvents($events);
         $calendar->setOptions($options);
-        $calendar->setId('add');
+        $calendar->setId('add');*/
 
         $minDate = date('Y-m-d');
 
@@ -90,7 +108,7 @@ class ScheduleController extends Controller
         $allowTimeString = "'".implode("','", $allowTimes)."'";
 
 
-        return view('schedule.add', compact('calendar', 'minDate', 'maxDate', 'allowTimeString'));
+        return view('schedule.add', compact(/*'calendar',*/ 'minDate', 'maxDate', 'allowTimeString'));
     }
 
     /**
@@ -101,6 +119,16 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'start_date'=>'required',
+            'end_date'=> 'required',
+            'kids_under_two'=> 'required|integer',
+            'kids_under_six'=> 'required|integer',
+            'adults'=> 'required|integer',
+            'bags'=> 'required|integer',
+            'comments' => 'required'
+        ]);
+        
         $event = new Event;
         $event->title = Auth::user()->name;
         $event->start_date = $request->start_date;
@@ -123,7 +151,21 @@ class ScheduleController extends Controller
      */
     public function show($id)
     {
-        //
+        $events = [];
+        $data = Event::where('id', $id)->first();
+
+        $minDate = date('Y-m-d');
+
+        $maxDate = date('Y-m-d', strtotime("+30 day"));
+
+        for ($hour = 6; $hour <= 23; $hour++) {
+            $allowTimes[] = $hour.':00';
+            $allowTimes[] = $hour.':30';
+        }
+
+        $allowTimeString = "'".implode("','", $allowTimes)."'";
+
+        return view('schedule.show', compact( 'id','minDate', 'maxDate', 'allowTimeString', 'data'));
     }
 
     /**
@@ -134,7 +176,23 @@ class ScheduleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $events = [];
+        $data = Event::where('id', $id)->first();
+
+        $minDate = date('Y-m-d');
+
+        $maxDate = date('Y-m-d', strtotime("+30 day"));
+
+        for ($hour = 6; $hour <= 23; $hour++) {
+            $allowTimes[] = $hour.':00';
+            $allowTimes[] = $hour.':30';
+        }
+
+        $allowTimeString = "'".implode("','", $allowTimes)."'";
+
+
+
+        return view('schedule.edit', compact( 'id','minDate', 'maxDate', 'allowTimeString', 'data'));
     }
 
     /**
@@ -146,7 +204,29 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'start_date'=>'required',
+            'end_date'=> 'required',
+            'kids_under_two'=> 'required|integer',
+            'kids_under_six'=> 'required|integer',
+            'adults'=> 'required|integer',
+            'bags'=> 'required|integer',
+            'comments' => 'required'
+        ]);
+
+        $event = Event::where('id', $id)->first();
+        $event->title = Auth::user()->name;
+        $event->start_date = $request->start_date;
+        $event->end_date = $request->end_date;
+        $event->user = Auth::user()->id;
+        $event->kids_under_two = $request->kids_under_two;
+        $event->kids_under_six = $request->kids_under_six;
+        $event->adults = $request->adults;
+        $event->bags = $request->bags;
+        $event->comments = $request->comments;
+        $event->save();
+
+        return redirect()->route('schedule.index')->with('message', 'Event updated successfully!');
     }
 
     /**

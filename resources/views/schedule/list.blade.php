@@ -8,49 +8,30 @@
 @endsection
 
 @section('content')
-    <div class="row" style="background-color: white;">
-        <div class="col-md-12 ">
-            <h3>Schedule</h3>
-            <hr>
-        </div>
-        <div class="col-md-6 ">
-            <div class="panel panel-default">
-                <div class="panel-heading"></div>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><h1>Schedule</h1></div>
 
-                <div class="panel-body">
+                <div class="card-body">
+                    <div class="col-md-12 col-md-offset-1">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    </div>
+
+                    <br>
+                    <div class="col-md-12 col-md-offset-1 right">
+                        <a class="btn btn-dark" href="{{route('schedule.create')}}">new schedule</a>
+                    </div>
+                    <br>
                     {!! $calendar->calendar() !!}
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-md-offset-1">
-            <form action="/action_page.php" method="post">
-                <div class="form-group">
-                    <label for="email">Crianças (0 - 3 anos)</label>
-                    <input type="number" class="form-control" id="email" name="email">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Crianças (2 - 6 anos)</label>
-                    <input type="number" class="form-control" id="pwd">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Adultos</label>
-                    <input type="number" class="form-control" id="pwd">
-                </div>
-
-                <div class="form-group">
-                    <label for="pwd">Malas</label>
-                    <input type="number" class="form-control" id="pwd">
-                </div>
-                <div class="form-group">
-                    <label for="pwd">Observação</label>
-                    <div><textarea rows="5" cols="40" class="textarea" id="pwd"></textarea></div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Reservar</button>
-            </form>
-            <button id="my-button" type="submit" class="btn btn-primary">Reservar</button>
-        </div>
     </div>
+
+
+
+
 @endsection
 
 @section('script')
@@ -60,14 +41,4 @@
     <script src='{{ url('fullcalendar/packages/list/main.js') }}'></script>
     <script src='{{ url('fullcalendar/packages/timegrid/main.js') }}'></script>
     {!! $calendar->script() !!}
-    <script>
-        document.getElementById('my-button').addEventListener('click', function() {
-            var date = calendar.getDate();
-            var date = calendar.start();
-            var time = calendar.toString();
-            alert("The current date of the calendar is " + date.toISOString());
-        });
-
-    </script>
-
 @endsection

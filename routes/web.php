@@ -45,14 +45,16 @@ Route::prefix('admin')->group(function () {
     Route::get('events', 'EventController@admin');
 });
 
-//Route::resource('schedule', 'ScheduleController')->middleware('auth');
+Route::resource('schedule', 'ScheduleController')->middleware('auth');
 
-Route::group(['prefix' => 'schedule', 'middleware' => 'auth'], function () {
-    Route::get('/', 'ScheduleController@index')->name('schedule');
-    Route::get('/add', 'ScheduleController@create')->name('schedule.add');
-    Route::post('/add', 'ScheduleController@store')->name('schedule.add');
-    Route::get('projetos/editar/{id}', 'ScheduleController@getEditar');
-    Route::post('projetos/editar/{id}', 'ScheduleController@postEditar');
-    Route::post('projetos/deletar/{id}', 'ScheduleController@postDeletar');
-
-});
+//Route::group(['prefix' => 'schedule', 'middleware' => 'auth'], function () {
+//    Route::get('/', 'ScheduleController@index')->name('schedule');
+//    Route::get('/add', 'ScheduleController@create')->name('schedule.add');
+//    Route::post('/add', 'ScheduleController@store')->name('schedule.add');
+//    Route::get('/show/{id}', 'ScheduleController@show')->name('schedule.add');
+//
+//    Route::get('projetos/editar/{id}', 'ScheduleController@getEditar');
+//    Route::post('projetos/editar/{id}', 'ScheduleController@postEditar');
+//    Route::post('projetos/deletar/{id}', 'ScheduleController@postDeletar');
+//
+//});

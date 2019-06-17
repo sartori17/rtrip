@@ -1,15 +1,10 @@
 @extends('layouts.app')
 
 @section('style')
-{{--    <link href='{{ url('fullcalendar/packages/core/main.css') }}' rel='stylesheet' />--}}
-{{--    <link href='{{ url('fullcalendar/packages/daygrid/main.css') }}' rel='stylesheet' />--}}
-{{--    <link href='{{ url('fullcalendar/packages/list/main.css') }}' rel='stylesheet' />--}}
-{{--    <link href='{{ url('fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />--}}
     <link href='{{ url('css/jquery.datetimepicker.min.css') }}' rel='stylesheet' />
 @endsection
 
 @section('content')
-
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -20,39 +15,40 @@
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                     </div>
                     <br>
-                    <form action="{{ route('schedule.store') }}" method="post">
+                    <form action="{{ route('schedule.update', ['id'=>$id]) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="start_date">Start date</label>
-                            <input type="text" class="form-control timepicker" id="start_date" name="start_date">
+                            <input type="text" class="form-control timepicker" id="start_date" name="start_date" value="{{$data->start_date}}">
                         </div>
                         <div class="form-group">
                             <label for="end_date">End date</label>
-                            <input type="text" class="form-control timepicker" id="end_date" name="end_date">
+                            <input type="text" class="form-control timepicker" id="end_date" name="end_date" value="{{$data->end_date}}">
                         </div>
                         <div class="form-group">
                             <label for="kids_under_two">Crianças (0 - 2 anos)</label>
-                            <input type="number" class="form-control" id="kids_under_two" name="kids_under_two">
+                            <input type="number" class="form-control" id="kids_under_two" name="kids_under_two" value="{{$data->kids_under_two}}">
                         </div>
                         <div class="form-group">
                             <label for="kids_under_six">Crianças (3 - 6 anos)</label>
-                            <input type="number" class="form-control" id="kids_under_six" name="kids_under_six">
+                            <input type="number" class="form-control" id="kids_under_six" name="kids_under_six" value="{{$data->kids_under_six}}">
                         </div>
                         <div class="form-group">
                             <label for="adults">Adultos</label>
-                            <input type="number" class="form-control" id="adults" name="adults">
+                            <input type="number" class="form-control" id="adults" name="adults" value="{{$data->adults}}">
                         </div>
 
                         <div class="form-group">
                             <label for="bags">Malas</label>
-                            <input type="number" class="form-control" id="bags" name="bags">
+                            <input type="number" class="form-control" id="bags" name="bags" value="{{$data->bags}}">
                         </div>
                         <div class="form-group">
                             <label for="comments">Observação</label>
-                            <div><textarea rows="5" cols="40" class="textarea" id="comments" name="comments"></textarea></div>
+                            <div><textarea rows="5" cols="40" class="textarea" id="comments" name="comments" >{{$data->comments}}</textarea></div>
                         </div>
                         <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary">save</button>
                         </div>
                     </form>
                 </div>
@@ -72,22 +68,4 @@
             allowTimes:[<?=$allowTimeString?>]
         });
     </script>
-
-    {{--    <script src='{{ url('fullcalendar/packages/core/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/daygrid/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/interaction/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/list/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/timegrid/main.js') }}'></script>--}}
-
-{{--    --}}
-{{--    {!! $calendar->script() !!}--}}
-{{--    <script>--}}
-{{--        document.getElementById('my-button').addEventListener('click', function() {--}}
-{{--            var date = calendar.getDate();--}}
-{{--            var date = calendar.start();--}}
-{{--            var time = calendar.toString();--}}
-{{--            alert("The current date of the calendar is " + date.toISOString());--}}
-{{--        });--}}
-{{--    </script>--}}
-
 @endsection

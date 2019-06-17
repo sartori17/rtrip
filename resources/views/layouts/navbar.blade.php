@@ -12,7 +12,7 @@
                 <a class="nav-link" href="{{ route('events') }}">Events</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('schedule') }}">Schedule</a>
+                <a class="nav-link" href="{{ route('schedule.index') }}">Schedule</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
