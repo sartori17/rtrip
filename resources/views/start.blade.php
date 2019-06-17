@@ -39,7 +39,7 @@
       <div class="container">
 
         <a class="navbar-brand" href="#">
-                    <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">
+{{--                    <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">--}}
 {{--          {{ config('app.name', 'Laravel') }}--}}
         </a>
 
