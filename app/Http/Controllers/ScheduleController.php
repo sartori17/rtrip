@@ -115,8 +115,9 @@ class ScheduleController extends Controller
 
         $allowTimeString = "'".implode("','", $allowTimes)."'";
 
+        $title = Auth::user()->name;
 
-        return view('schedule.add', compact(/*'calendar',*/ 'minDate', 'maxDate', 'allowTimeString'));
+        return view('schedule.add', compact(/*'calendar',*/ 'minDate', 'maxDate', 'allowTimeString', 'title'));
     }
 
     /**

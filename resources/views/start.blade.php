@@ -39,7 +39,7 @@
       <div class="container">
 
         <a class="navbar-brand" href="#">
-{{--                    <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">--}}
+{{--            <img src="img/logo.png" alt="logo" class="logo-1" style="width: 200px;">--}}
 {{--          {{ config('app.name', 'Laravel') }}--}}
         </a>
 
@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="btn" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('login-form').submit();">{{ __('Login') }}</a>
+              <a class="" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('login-form').submit();">{{ __('Login') }}</a>
 
               <form id="login-form" action="{{ route('login') }}" method="GET" style="display: none;">
 

@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h1>Agendamento</h1></div>
+                <div class="card-header">Agendamento</div>
 
                 <div class="card-body">
                     @if (Session::has('message'))
@@ -23,7 +23,7 @@
 
                     <br>
                     <div class="col-md-12 col-md-offset-1 right">
-                        <a class="btn btn-dark" href="{{route('schedule.create')}}">novo agendamento</a>
+                        <a class="btn btn-dark" href="{{route('schedule.create')}}">Novo Agendamento</a>
                     </div>
                     <br>
                     {!! $calendar->calendar() !!}

@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h1>Agendamento</h1></div>
+                <div class="card-header">Agendamento</div>
 
                 <div class="card-body">
                     <div class="col-md-12 col-md-offset-1">
@@ -23,36 +23,54 @@
                     <form action="{{ route('schedule.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="start_date">Data</label>
-                            <input type="text" class="form-control timepicker" id="start_date" name="start_date">
+                            <h4>{{$title}}</h4>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <div class="form-group">
+                                    <label class="text-dark" for="start_date">Data</label>
+                                    <input type="text" class="form-control timepicker" id="start_date" name="start_date" readOnly>
+                                </div>
+                            </div>
                         </div>
 {{--                        <div class="form-group">--}}
 {{--                            <label for="end_date">End date</label>--}}
 {{--                            <input type="text" class="form-control timepicker" id="end_date" name="end_date">--}}
 {{--                        </div>--}}
-                        <div class="form-group">
-                            <label for="kids_under_two">Crianças (0 - 2 anos)</label>
-                            <input type="number" class="form-control" id="kids_under_two" name="kids_under_two">
-                        </div>
-                        <div class="form-group">
-                            <label for="kids_under_six">Crianças (3 - 6 anos)</label>
-                            <input type="number" class="form-control" id="kids_under_six" name="kids_under_six">
-                        </div>
-                        <div class="form-group">
-                            <label for="adults">Adultos</label>
-                            <input type="number" class="form-control" id="adults" name="adults">
-                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="text-dark" for="kids_under_two">Crianças (0 - 2 anos)</label>
+                                    <input type="number" min="0" class="form-control" id="kids_under_two" name="kids_under_two">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="text-dark" for="kids_under_six">Crianças (3 - 6 anos)</label>
+                                    <input type="number" min="0" class="form-control" id="kids_under_six" name="kids_under_six">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label class="text-dark" for="adults">Adultos</label>
+                                    <input type="number" min="0" class="form-control" id="adults" name="adults">
+                                </div>
+                            </div>
+                            <div class="col">
 
-                        <div class="form-group">
-                            <label for="bags">Malas</label>
-                            <input type="number" class="form-control" id="bags" name="bags">
+                                <div class="form-group">
+                                    <label class="text-dark" for="bags">Malas</label>
+                                    <input type="number" min="0" class="form-control" id="bags" name="bags">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="comments">Observações</label>
-                            <div><textarea rows="5" cols="40" class="textarea" id="comments" name="comments"></textarea></div>
+                            <label class="text-dark" for="comments">Observações</label>
+                            <textarea rows="5" cols="40" class="form-control" id="comments" name="comments"></textarea>
                         </div>
                         <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-primary">agendar</button>
+                            <button type="submit" class="btn btn-dark">Agendar</button>
                         </div>
                     </form>
                 </div>

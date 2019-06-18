@@ -62,7 +62,7 @@
 
 <footer class="footer mt-auto py-3">
     <div class="container">
-        <p style="text-align: center; color: grey;">Telemóvel: +351 936 059 647 E-mail: roadtrip.porto@gmail.com</p>
+        <p style="text-align: center; color: grey;">Telemóvel: +351 936 059 647 </p><p style="text-align: center; color: grey;">E-mail: roadtrip.porto@gmail.com</p>
     </div>
 </footer>
 
