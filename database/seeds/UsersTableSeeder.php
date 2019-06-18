@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             $newUser = User::create([
                 'name'     => 'Admin',
                 'email'    => 'admin@admin.com',
-                'password' => bcrypt('password'),
+                'password' => bcrypt('S4nt0s'),
             ]);
 
             $newUser->attachRole($adminRole);
@@ -39,7 +39,31 @@ class UsersTableSeeder extends Seeder
             $newUser = User::create([
                 'name'     => 'User',
                 'email'    => 'user@user.com',
-                'password' => bcrypt('password'),
+                'password' => bcrypt('S4nt0s'),
+            ]);
+
+            $newUser;
+            $newUser->attachRole($userRole);
+        }
+
+        if (User::where('email', '=', 'richardportugal013@gmail.com')->first() === null) {
+            $newUser = User::create([
+                'name'     => 'Richard',
+                'email'    => 'richardportugal013@gmail.com',
+                'password' => bcrypt('123456789'),
+            ]);
+
+            $newUser->attachRole($adminRole);
+            foreach ($permissions as $permission) {
+                $newUser->attachPermission($permission);
+            }
+        }
+
+        if (User::where('email', '=', 'hotel@user.com')->first() === null) {
+            $newUser = User::create([
+                'name'     => 'Hotel',
+                'email'    => 'hotel@user.com',
+                'password' => bcrypt('123456789'),
             ]);
 
             $newUser;
