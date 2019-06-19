@@ -26,6 +26,7 @@ class ScheduleController extends Controller
 
         $options = [
             'plugins' => ['dayGrid', 'timeGrid', 'list', 'interaction'],
+            'timeZone' => 'America/Sao_Paulo',
             'defaultView' => 'list',
             'header' => [
                 'left' => 'title',
@@ -148,7 +149,7 @@ class ScheduleController extends Controller
         $event->bags = $request->bags;
         $event->comments = $request->comments;
         $event->save();
-        return redirect()->route('schedule.index')->with('message', 'Event created successfully!');
+        return redirect()->route('schedule.index')->with('message', 'Agendamento realizado com sucesso!');
     }
 
     /**

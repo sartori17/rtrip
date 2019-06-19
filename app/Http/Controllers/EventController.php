@@ -15,6 +15,7 @@ class EventController extends Controller
 
         $options = [
             'plugins' => ['dayGrid', 'timeGrid', 'list', 'interaction'],
+            'timeZone' => 'America/Sao_Paulo',
             'defaultView' => 'dayGridMonth',
             'header' => [
                 'left' => 'title',
