@@ -78,7 +78,7 @@
 
 
             <div class="scoial-icon mt-20 text-center">
-              <a href="https://www.facebook.com/roadtrip.transporte.turismo/"><span><i class="fab fa-facebook-f"></i></span></a>
+              <a href="https://www.facebook.com/roadtrip.transporte.turismo/?view_public_for=333605843968385"><span><i class="fab fa-facebook-f"></i></span></a>
               <a href="https://www.instagram.com/roadtrip.porto/"><span><i class="fab fa-instagram"></i></span></a>
               <a href="#0" title="+351 936 059 647"><span><i class="fas fa-phone"></i></span></a>
             </div>
