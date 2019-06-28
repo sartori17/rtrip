@@ -16,7 +16,7 @@
             @role('admin')
                 @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::routeIs('register') ? 'active' : '' }}" href="{{ route('register') }}">{{ __('Usuarios') }} </a>
+                        <a class="nav-link {{ Request::routeIs('users') ? 'active' : '' }}" href="{{ route('users') }}">{!! trans('laravelusers::app.nav.users') !!}</a>
                     </li>
                 @endif
             @endrole

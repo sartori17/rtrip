@@ -19,6 +19,15 @@
 
     <!-- Bootstrap core CSS -->
     @yield('style')
+    {{-- Styles --}}
+    @if(config('laravelusers.enableBootstrapCssCdn'))
+        <link rel="stylesheet" type="text/css" href="{{ config('laravelusers.bootstrapCssCdn') }}">
+    @endif
+    @if(config('laravelusers.enableAppCss'))
+        <link rel="stylesheet" type="text/css" href="{{ asset(config('laravelusers.appCssPublicFile')) }}">
+    @endif
+
+    @yield('template_linked_css')
 
     <style>
         .bd-placeholder-img {
@@ -35,6 +44,10 @@
                 font-size: 3.5rem;
             }
         }
+
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
     </style>
     <!-- Custom styles for this template -->
     <link href="{{ url('css/sticky-footer-navbar.css') }}" rel="stylesheet">
@@ -65,9 +78,24 @@
         <p style="text-align: center; color: grey;">Telemóvel: +351 936 059 647 </p><p style="text-align: center; color: grey;">E-mail: roadtrip.porto@gmail.com</p>
     </div>
 </footer>
-
+</body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous" ></script>
 <script src="{{ url('/js/bootstrap.bundle.min.js') }}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 @yield('script')
-</html>
+{{-- Scripts --}}
+@if(config('laravelusers.enablejQueryCdn'))
+    <script src="{{ asset(config('laravelusers.jQueryCdn')) }}"></script>
+@endif
+@if(config('laravelusers.enableBootstrapPopperJsCdn'))
+    <script src="{{ asset(config('laravelusers.bootstrapPopperJsCdn')) }}"></script>
+@endif
+@if(config('laravelusers.enableBootstrapJsCdn'))
+    <script src="{{ asset(config('laravelusers.bootstrapJsCdn')) }}"></script>
+@endif
+@if(config('laravelusers.enableAppJs'))
+    <script src="{{ asset(config('laravelusers.appJsPublicFile')) }}"></script>
+@endif
+@include('laravelusers::scripts.toggleText')
 
+@yield('template_scripts')
+</html>
