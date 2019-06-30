@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Calendar;
 use Auth;
 use App\Event;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailSchedule;
 
 
 class ScheduleController extends Controller
@@ -47,7 +49,6 @@ class ScheduleController extends Controller
         ];
 
         $events = [];
-
 
         if($data->count()) {
             foreach ($data as $key => $value) {
@@ -149,6 +150,10 @@ class ScheduleController extends Controller
         $event->bags = $request->bags;
         $event->comments = $request->comments;
         $event->save();
+
+        $to = "sartori.felipe@gmail.com";
+        Mail::to($to)->send(new SendMailSchedule($event));
+
         return redirect()->route('schedule.index')->with('message', 'Agendamento realizado com sucesso!');
     }
 
