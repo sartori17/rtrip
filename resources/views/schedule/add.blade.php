@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                     <label class="text-dark" for="users_id">Usuarios</label>
                                     <select class="form-control" name="user_id" required>
-                                        <option value="0">Selecione</option>
+                                        <option value="3">Selecione</option>
                                         @foreach ($users as $key => $value)
                                             <option value="{{ $key }}">{{ $value->name }}</option>
                                         @endforeach
