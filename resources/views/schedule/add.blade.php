@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('style')
-{{--    <link href='{{ url('fullcalendar/packages/core/main.css') }}' rel='stylesheet' />--}}
-{{--    <link href='{{ url('fullcalendar/packages/daygrid/main.css') }}' rel='stylesheet' />--}}
-{{--    <link href='{{ url('fullcalendar/packages/list/main.css') }}' rel='stylesheet' />--}}
-{{--    <link href='{{ url('fullcalendar/packages/timegrid/main.css') }}' rel='stylesheet' />--}}
     <link href='{{ url('css/jquery.datetimepicker.min.css') }}' rel='stylesheet' />
 @endsection
 
@@ -26,6 +22,21 @@
                             <h4>{{$title}}</h4>
                         </div>
                         <hr>
+                        @role('admin')
+                        <div class="row">
+                            <div class="col col-md-6">
+                                <div class="form-group">
+                                    <label class="text-dark" for="users_id">Usuarios</label>
+                                    <select class="form-control" name="user_id" required>
+                                        <option value="0">Selecione</option>
+                                        @foreach ($users as $key => $value)
+                                            <option value="{{ $key }}">{{ $value->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        @endrole
                         <div class="row">
                             <div class="col col-md-3">
                                 <div class="form-group">
@@ -90,22 +101,5 @@
             allowTimes:[<?=$allowTimeString?>]
         });
     </script>
-
-    {{--    <script src='{{ url('fullcalendar/packages/core/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/daygrid/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/interaction/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/list/main.js') }}'></script>--}}
-{{--    <script src='{{ url('fullcalendar/packages/timegrid/main.js') }}'></script>--}}
-
-{{--    --}}
-{{--    {!! $calendar->script() !!}--}}
-{{--    <script>--}}
-{{--        document.getElementById('my-button').addEventListener('click', function() {--}}
-{{--            var date = calendar.getDate();--}}
-{{--            var date = calendar.start();--}}
-{{--            var time = calendar.toString();--}}
-{{--            alert("The current date of the calendar is " + date.toISOString());--}}
-{{--        });--}}
-{{--    </script>--}}
 
 @endsection

@@ -33,7 +33,7 @@ return [
     'roleModel'                     => 'jeremykenedy\LaravelRoles\Models\Role',
 
     // Enable Soft Deletes - Not yet setup - on the roadmap.
-    'softDeletedEnabled'            => false,
+    'softDeletedEnabled'            => true,
 
     // Laravel Default User Model
     'defaultUserModel'              => 'App\User',
