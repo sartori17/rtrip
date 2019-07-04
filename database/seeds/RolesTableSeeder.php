@@ -43,5 +43,21 @@ class RolesTableSeeder extends Seeder
                 'level'       => 0,
             ]);
         }
+
+        $user = User::where('id', 1)->orderBy('name')->first();
+        $role = config('roles.models.role')::where('name', '=', 'Admin')->first();  //choose the default role upon user creation.
+        $user->attachRole($role);
+
+        $user = User::where('id', 2)->orderBy('name')->first();
+        $role = config('roles.models.role')::where('name', '=', 'User')->first();  //choose the default role upon user creation.
+        $user->attachRole($role);
+
+        $user = User::where('id', 3)->orderBy('name')->first();
+        $role = config('roles.models.role')::where('name', '=', 'Admin')->first();  //choose the default role upon user creation.
+        $user->attachRole($role);
+
+        $user = User::where('id', 4)->orderBy('name')->first();
+        $role = config('roles.models.role')::where('name', '=', 'User')->first();  //choose the default role upon user creation.
+        $user->attachRole($role);
     }
 }
