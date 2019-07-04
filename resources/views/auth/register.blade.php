@@ -5,9 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Registro') }}</div>
+                    <div class="card-header">{{ __('Novo Usuario') }}</div>
 
                     <div class="card-body">
+                        @role('admin')
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                             @csrf
 
@@ -54,10 +55,24 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Repita a senha') }}</label>
+                                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Repita a senha') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="address" type="password" class="form-control" name="password_confirmation" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Endereco') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>
+
+                                    @if ($errors->has('address'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('address') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -69,6 +84,7 @@
                                 </div>
                             </div>
                         </form>
+                        @endrole
                     </div>
                 </div>
             </div>

@@ -40,7 +40,8 @@ return [
 
     // Use the provided blade templates or extend to your own templates.
     'showUsersBlade'                => 'laravelusers::usersmanagement.show-users',
-    'createUserBlade'               => 'laravelusers::usersmanagement.create-user',
+    //'createUserBlade'               => 'laravelusers::usersmanagement.create-user',
+    'createUserBlade'               => 'auth.register',
     'showIndividualUserBlade'       => 'laravelusers::usersmanagement.show-user',
     'editIndividualUserBlade'       => 'laravelusers::usersmanagement.edit-user',
 
