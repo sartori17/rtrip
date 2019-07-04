@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
@@ -10,6 +11,7 @@ use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
     use HasRoleAndPermission;
 
     /**
@@ -18,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'adress'
+        'name', 'email', 'password', 'address'
     ];
 
     /**
