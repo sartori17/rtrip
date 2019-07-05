@@ -53,6 +53,23 @@ class ScheduleController extends Controller
 
         if($data->count()) {
             foreach ($data as $key => $value) {
+                switch ($value->status) {
+                    case 0:
+                        $color = "#292b2c";
+                        break;
+                    case 1:
+                        $color = "#5cb85c";
+                        break;
+                    case 2:
+                        $color = "#d9534f";
+                        break;
+                    case 4:
+                        $color = "#f0ad4e";
+                        break;
+                    default:
+                        $color = "#292b2c";
+
+                }
                 $events[] = Calendar::event(
                     $value->title,
                     false,
@@ -61,7 +78,7 @@ class ScheduleController extends Controller
                     null,
                     // Add color and link on event
                     [
-                        'color' => '#f05050',
+                        'color' => $color,
                         'url' => route('schedule.show', ['id' => $value->id]),
                     ]
                 );
@@ -133,9 +150,6 @@ class ScheduleController extends Controller
             } else {
                 return redirect()->route('schedule.create')->with('message', 'Agendamento nao realizado!');
             }
-
-
-
         } else {
             $user_id = Auth::user()->id;
             $title = Auth::user()->name;
@@ -222,8 +236,6 @@ class ScheduleController extends Controller
 
         $allowTimeString = "'".implode("','", $allowTimes)."'";
 
-
-
         return view('schedule.edit', compact( 'id','minDate', 'maxDate', 'allowTimeString', 'data'));
     }
 
@@ -256,7 +268,29 @@ class ScheduleController extends Controller
         $event->comments = $request->comments;
         $event->save();
 
-        return redirect()->route('schedule.index')->with('message', 'Event updated successfully!');
+        $user = Auth::user();
+        if ($user->hasRole('admin')) {
+            $userFind = User::where('id',$event->user)->orderBy('name')->first();
+
+            if (isset($userFind)) {
+                $email = $userFind->email;
+            } else {
+                return redirect()->route('schedule.create')->with('message', 'Agendamento nao realizado!');
+            }
+        } else {
+            $email = Auth::user()->email;
+        }
+
+        $to = "contato@roadtrip-eu.pt";
+        $cc2 = "sartori.felipe@gmail.com";
+        Mail::to($to)
+            ->cc($email)
+            ->cc($cc2)
+            ->subject('RoadTrip - Agendamento - Editar')
+            ->view('mails.newschedule')
+            ->send(new SendMailSchedule($event));
+
+        return redirect()->route('schedule.index')->with('message', 'Agendamento atualizado com sucesso!');
     }
 
     /**
@@ -265,8 +299,34 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $event = Event::where('id', $id)->first();
+
+        $event->status = $request->status;
+        $event->save();
+
+        $user = Auth::user();
+        if ($user->hasRole('admin')) {
+            $userFind = User::where('id',$event->user)->orderBy('name')->first();
+
+            if (isset($userFind)) {
+                $email = $userFind->email;
+            } else {
+                return redirect()->route('schedule.create')->with('message', 'Agendamento nao realizado!');
+            }
+        } else {
+            $email = Auth::user()->email;
+        }
+
+        $to = "contato@roadtrip-eu.pt";
+        $cc2 = "sartori.felipe@gmail.com";
+        Mail::to($to)
+            ->cc($email)
+            ->cc($cc2)
+            ->queue(new SendMailSchedule($event));
+
+        return redirect()->route('schedule.show', ['id' => $id])->with('message', 'Agendamento atualizado com sucesso!');
+
     }
 }

@@ -12,14 +12,29 @@
 
                 <div class="card-body">
                     <div class="col-md-12 col-md-offset-1">
-
+                        @if (Session::has('message'))
+                            <div class="alert alert-success">{{ Session::get('message') }}</div>
+                        @endif
                     </div>
-                    <br>
                     @csrf
                     <div class="form-group">
-                        <h4>{{$data->title}}</h4>
+                        <h4>{{$data->title}}</h4><hr>
                     </div>
-                    <hr>
+                    <div class="form-group ">
+                        <label class="text-dark" for="start_date">Status</label>
+                        @if($data->status == 0)
+                            <h4><span class="badge badge-secondary">Nao definido</span></h4>
+                        @endif
+                        @if($data->status == 1)
+                            <h4><span class="badge badge-success">Confirmado</span></h4>
+                        @endif
+                        @if($data->status == 2)
+                            <h4><span class="badge badge-danger">Cancelado</span></h4>
+                        @endif
+                        @if($data->status == 4)
+                            <h4><span class="badge badge-warning">Cancelado pelo usuario</span></h4>
+                        @endif
+                    </div>
                     <div class="form-group ">
                         <label class="text-dark" for="start_date">Data</label>
                         <input type="text" class="form-control-plaintext timepicker" id="start_date" name="start_date" value="{{$data->start_date}}" readOnly>
@@ -61,13 +76,39 @@
                     <div></div>
                     @role('admin')
                     <div class="row justify-content-center">
-                        <a class="btn btn-dark" href="{{route('schedule.edit', ['id' => $id])}}">editar</a>
+                        @if ($data->status == 0)
+                        <a class="btn btn-dark" href="{{route('schedule.edit', ['id' => $id])}}">Editar</a>
+                        @endif
+                        @if ($data->status == 0 or $data->status == 2)
+                            <form action="{{ route('schedule.destroy', ['id'=>$id, 'status'=>1]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Confirmar" class="btn btn-success">
+                            </form>
+                        @endif
+                        @if ($data->status == 0 or $data->status == 1)
+                            <form action="{{ route('schedule.destroy', ['id'=>$id, 'status'=>2]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Cancelar" class="btn btn-danger">
+                            </form>
+                        @endif
                     </div>
+                    @else
+                        <div class="row justify-content-center">
+                            @if ($data->status == 0 )
+                                <form action="{{ route('schedule.destroy', ['id'=>$id, 'status'=>4]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Cancelar" class="btn btn-danger">
+                                </form>
+                            @endif
+                        </div>
                     @endrole
-                </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('script')

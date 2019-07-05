@@ -30,7 +30,21 @@ class SendMailSchedule extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject('RoadTrip - Agendamento')
-                    ->view('mails.newschedule');
+        $event = $this->event;
+        $descricao = "";
+        $view_mail = "mails.newschedule";
+        if ($event->status == 1) {
+            $descricao = " - Confirmado";
+            $view_mail = "mails.confirmschedule";
+        } elseif ($event->status == 2) {
+            $descricao = " - Cancelado";
+            $view_mail = "mails.cancelschedule";
+        } elseif ($event->status == 3) {
+            $descricao = " - Cancelado";
+            $view_mail = "mails.cancelschedule";
+        }
+
+        return $this->subject('RoadTrip - Agendamento'.$descricao)
+                    ->view($view_mail);
     }
 }

@@ -41,6 +41,22 @@ class EventController extends Controller
 
         if($data->count()) {
             foreach ($data as $key => $value) {
+                switch ($value->status) {
+                    case 0:
+                        $color = "#292b2c";
+                        break;
+                    case 1:
+                        $color = "#5cb85c";
+                        break;
+                    case 2:
+                        $color = "#d9534f";
+                        break;
+                    case 4:
+                        $color = "#f0ad4e";
+                        break;
+                    default:
+                        $color = "#292b2c";
+                }
                 $events[] = Calendar::event(
                     $value->title,
                     false,
@@ -49,7 +65,7 @@ class EventController extends Controller
                     null,
                     // Add color and link on event
                     [
-                        'color' => '#f05050',
+                        'color' => $color,
                         'url' => route('schedule.show', ['id' => $value->id]),
                     ]
                 );

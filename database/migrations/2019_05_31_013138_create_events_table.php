@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('title');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-
+            $table->integer('status')->default(0);
             $table->string('user');
             $table->integer('kids_under_two');
             $table->integer('kids_under_six');

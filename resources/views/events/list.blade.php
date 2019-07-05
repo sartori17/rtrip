@@ -18,14 +18,17 @@
                         <div class="alert alert-info">{{ Session::get('message') }}</div>
                     @endif
                     <div class="col-md-12 col-md-offset-1">
-
-                    </div>
-
-                    <br>
-                    <div class="col-md-12 col-md-offset-1 right">
-{{--                        <a class="btn btn-dark" href="{{route('schedule.create')}}">Novo agendamento</a>--}}
+                        <h4><span class="badge badge-secondary">Nao definido</span>
+                        <span class="badge badge-success">Confirmado</span>
+                        <span class="badge badge-danger">Cancelado</span>
+                        <span class="badge badge-warning">Cancelado pelo usuario</span></h4>
                     </div>
                     <br>
+                    <div class="col-md-12 col-md-offset-1">
+                        <a class="btn btn-dark float-right" href="{{route('schedule.create')}}">Novo agendamento</a>
+                    </div>
+                    <br>
+                    <hr>
                     {!! $calendar->calendar() !!}
                 </div>
             </div>
