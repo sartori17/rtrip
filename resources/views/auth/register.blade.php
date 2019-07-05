@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Novo Usuario') }}</div>
 
                     <div class="card-body">
-                        @role('admin')
+
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                             @csrf
 
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </form>
-                        @endrole
+
                     </div>
                 </div>
             </div>
