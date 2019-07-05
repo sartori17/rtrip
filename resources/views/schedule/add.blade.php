@@ -13,7 +13,9 @@
 
                 <div class="card-body">
                     <div class="col-md-12 col-md-offset-1">
-
+                        @if (Session::has('message'))
+                            <div class="alert alert-warning">{{ Session::get('message') }}</div>
+                        @endif
                     </div>
                     <br>
                     <form action="{{ route('schedule.store') }}" method="post">

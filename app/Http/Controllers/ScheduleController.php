@@ -113,6 +113,7 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'user_id'=>'required',
             'start_date'=>'required',
             'kids_under_two'=> 'required|integer',
             'kids_under_six'=> 'required|integer',
@@ -125,9 +126,16 @@ class ScheduleController extends Controller
         if ($user->hasRole('admin')) {
             $userFind = User::where('id',$request->user_id)->orderBy('name')->first();
 
-            $user_id = $userFind->id;
-            $title = $userFind->name;
-            $email = $userFind->email;
+            if (isset($userFind)) {
+                $user_id = $userFind->id;
+                $title = $userFind->name;
+                $email = $userFind->email;
+            } else {
+                return redirect()->route('schedule.create')->with('message', 'Agendamento nao realizado!');
+            }
+
+
+
         } else {
             $user_id = Auth::user()->id;
             $title = Auth::user()->name;
