@@ -167,7 +167,7 @@ class ScheduleController extends Controller
         $event->comments = $request->comments;
         $event->save();
 
-        $to = "contato@roadtrip-eu.pt";
+        $to = "contacto@roadtrip-eu.pt";
         $cc2 = "sartori.felipe@gmail.com";
         Mail::to($to)
                 ->cc($email)
@@ -280,7 +280,7 @@ class ScheduleController extends Controller
             $email = Auth::user()->email;
         }
 
-        $to = "contato@roadtrip-eu.pt";
+        $to = "contacto@roadtrip-eu.pt";
         $cc2 = "sartori.felipe@gmail.com";
         Mail::to($to)
             ->cc($email)
@@ -318,7 +318,7 @@ class ScheduleController extends Controller
             $email = Auth::user()->email;
         }
 
-        $to = "contato@roadtrip-eu.pt";
+        $to = "contacto@roadtrip-eu.pt";
         $cc2 = "sartori.felipe@gmail.com";
         Mail::to($to)
             ->cc($email)
