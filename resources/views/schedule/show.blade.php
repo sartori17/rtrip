@@ -23,7 +23,7 @@
                     <div class="form-group ">
                         <label class="text-dark" for="start_date">Status</label>
                         @if($data->status == 0)
-                            <h4><span class="badge badge-secondary">Nao definido</span></h4>
+                            <h4><span class="badge badge-secondary">Solicitado</span></h4>
                         @endif
                         @if($data->status == 1)
                             <h4><span class="badge badge-success">Confirmado</span></h4>
@@ -32,7 +32,7 @@
                             <h4><span class="badge badge-danger">Cancelado</span></h4>
                         @endif
                         @if($data->status == 4)
-                            <h4><span class="badge badge-warning">Cancelado pelo usuario</span></h4>
+                            <h4><span class="badge badge-warning">Cancelado pelo cliente</span></h4>
                         @endif
                     </div>
                     <div class="form-group ">

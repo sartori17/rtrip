@@ -17,12 +17,6 @@
                     @if (Session::has('message'))
                         <div class="alert alert-info">{{ Session::get('message') }}</div>
                     @endif
-                    <div class="col-md-12 col-md-offset-1">
-                        <h4><span class="badge badge-secondary">Nao definido</span>
-                        <span class="badge badge-success">Confirmado</span>
-                        <span class="badge badge-danger">Cancelado</span>
-                        <span class="badge badge-warning">Cancelado pelo usuario</span></h4>
-                    </div>
                     <br>
                     <div class="col-md-12 col-md-offset-1">
                         <a class="btn btn-dark float-right" href="{{route('schedule.create')}}">Novo Agendamento</a>
@@ -30,6 +24,14 @@
                     <br>
                     <hr>
                     {!! $calendar->calendar() !!}
+                    <br>
+                    <div class="col-md-12 col-md-offset-1">
+                        <label>Legenda</label>
+                        <h4><span class="badge badge-secondary">Solicitado</span>
+                            <span class="badge badge-success">Confirmado</span>
+                            <span class="badge badge-danger">Cancelado</span>
+                            <span class="badge badge-warning">Cancelado pelo cliente</span></h4>
+                    </div>
                 </div>
             </div>
         </div>
